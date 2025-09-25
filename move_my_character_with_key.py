@@ -6,7 +6,8 @@ backgrounds = load_image('TUK_GROUND.png')
 tuk_ground = load_image('TUK_GROUND.png')
 character = load_image('animation_sheet.png')
 
-
+CHAR_SIZE = 50 # 메인루프 설정
+SPEED = 5 # 속도 설정
 
 running = True
 frame = 0
@@ -31,9 +32,13 @@ def handle_events():
             if event.key == SDLK_ESCAPE:
                 running = False
             elif event.key == SDLK_RIGHT:
-                dir = 1
-                move_dir = 1
-                ANIM_ROW = 100
+                dir = 1; move_dir = 1; ANIM_ROW = 100
+            elif event.key == SDLK_LEFT:
+                dir = 1; move_dir = -1; ANIM_ROW = 0
+            elif event.key == SDLK_UP:
+                dir = 1; move_dir = 2; ANIM_ROW = 200
+            elif event.key == SDLK_DOWN:
+                dir = 1; move_dir = -2; ANIM_ROW = 300
 
 
 while running:
