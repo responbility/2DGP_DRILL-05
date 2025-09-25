@@ -41,16 +41,28 @@ def handle_events():
                 dir = 1; move_dir = -2; ANIM_ROW = 300
 
 
-        elif event.type == SDL_KEYUP:
+        elif event.type == SDL_KEYUP:# 키를 뗏을때
             if (event.key == SDLK_RIGHT and move_dir == 1) or \
                     (event.key == SDLK_LEFT and move_dir == -1) or \
                     (event.key == SDLK_UP and move_dir == 2) or \
                     (event.key == SDLK_DOWN and move_dir == -2):
                 dir = 0
-
+            #\는 다음줄에 이어진다는 뜻
 while running:
     clear_canvas()
-
+    if dir != 0: #방향키가 눌렸을때(조건문)
+        if move_dir == 1:  #오른쪽
+            x += SPEED
+        elif move_dir == -1:  # 왼쪽
+            x -= SPEED
+        elif move_dir == 2:  # 위쪽
+            y += SPEED
+        elif move_dir == -2:  # 아래쪽
+            y -= SPEED
+    x = max(CHAR_SIZE, min(x, TUK_WIDTH - CHAR_SIZE)) #캐릭터가 화면밖으로 나가지 않도록 조정
+    y = max(CHAR_SIZE, min(y, TUK_HEIGHT - CHAR_SIZE)) #캐릭터가 화면밖으로 나가지 않도록 조정
+    tuk_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2, TUK_WIDTH, TUK_HEIGHT)
+    character.clip_draw(frame * 100, ANIM_ROW, 100, 100, x, y)
 
 
     update_canvas()
