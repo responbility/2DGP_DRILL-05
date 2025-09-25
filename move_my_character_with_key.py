@@ -41,10 +41,16 @@ def handle_events():
                 dir = 1; move_dir = -2; ANIM_ROW = 300
 
 
+        elif event.type == SDL_KEYUP:
+            if (event.key == SDLK_RIGHT and move_dir == 1) or \
+                    (event.key == SDLK_LEFT and move_dir == -1) or \
+                    (event.key == SDLK_UP and move_dir == 2) or \
+                    (event.key == SDLK_DOWN and move_dir == -2):
+                dir = 0
+
 while running:
     clear_canvas()
-    tuk_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
-    character.clip_draw(frame * 100, ANIM_ROW, 100, 100, x, y)
+
 
 
     update_canvas()
